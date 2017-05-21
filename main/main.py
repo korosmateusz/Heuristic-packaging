@@ -3,7 +3,6 @@ from magazine import magazine
 
 def main():
     mgz = magazine.Magazine(7, 10)
-    mgz.getPackages()
     mgz.allocatePackages()
     mgz.printPackages()
 

@@ -2,14 +2,13 @@ from magazine import package
 from resources import colors
 import sys
 
-class Magazine:
-    width = 0
-    height = 0
-    packages = []
 
+class Magazine:
     def __init__(self, width, height):
         self.width = width
         self.height = height
+        self.packages = []
+        self.getPackages()
 
     def getPackages(self):
         self.packages.append(package.Package(2, 3))
@@ -30,9 +29,9 @@ class Magazine:
                 wasPrinted = False
                 for p in self.packages:
                     if p.isThere(x, y):
-                        sys.stdout.write(colors.Colors.GREEN + "0" + colors.Colors.ENDC)
+                        sys.stdout.write(colors.Colors.GREEN + "0" + colors.Colors.NORMAL)
                         wasPrinted = True
                         break
                 if not wasPrinted:
-                    sys.stdout.write(colors.Colors.RED + "0" + colors.Colors.ENDC)
+                    sys.stdout.write(colors.Colors.RED + "0" + colors.Colors.NORMAL)
             print("")
