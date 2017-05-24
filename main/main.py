@@ -1,8 +1,11 @@
 from magazine import magazine
+import json
 
 
 def main():
-    mgz = magazine.Magazine(7, 10)
+    with open('../data.json') as file:
+        mgzSize = json.load(file)['magazine']
+        mgz = magazine.Magazine(mgzSize['width'], mgzSize['height'])
     mgz.allocatePackages()
     mgz.printPackages()
 

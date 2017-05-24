@@ -1,6 +1,7 @@
 from magazine import package
 from resources import colors
 import sys
+import json
 
 
 class Magazine:
@@ -11,9 +12,10 @@ class Magazine:
         self.getPackages()
 
     def getPackages(self):
-        self.packages.append(package.Package(2, 3))
-        self.packages.append(package.Package(1, 4))
-        self.packages.append(package.Package(5, 1))
+        with open('../data.json') as file:
+            packs = json.load(file)['packages']
+            for pack in packs:
+                self.packages.append(package.Package(pack['width'], pack['height']))
 
     def allocatePackages(self):
         self.packages[0].xLocation = 1
@@ -24,8 +26,8 @@ class Magazine:
         self.packages[2].yLocation = 7
 
     def printPackages(self):
-        for y in range(0, 10):
-            for x in range(0, 7):
+        for y in range(0, self.height):
+            for x in range(0, self.width):
                 wasPrinted = False
                 for p in self.packages:
                     if p.isThere(x, y):
