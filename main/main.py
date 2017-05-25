@@ -7,7 +7,7 @@ def main():
         mgzSize = json.load(file)['magazine']
         mgz = magazine.Magazine(mgzSize['width'], mgzSize['height'])
     mgz.allocatePackages()
-    mgz.printPackages()
+    mgz.displayPackages()
 
 if __name__ == "__main__":
     main()
