@@ -1,5 +1,6 @@
 from magazine import package
 from resources import colors
+from random import randint
 import sys
 import json
 import copy
@@ -44,10 +45,11 @@ class Magazine:
 
     def allocatePackages(self):
         self.putPackage(self.packagesToPut[0], 0, 0)
-        for p in self.packages:
-            neighbourhood = self.generateNeighbourhood(p)
+        while True:
+            neighbourhood = self.generateNeighbourhood()
             if len(neighbourhood) > 0:
-                self.putPackage(neighbourhood[0], neighbourhood[0].xLocation, neighbourhood[0].yLocation)
+                rand = randint(0, len(neighbourhood)-1)
+                self.putPackage(neighbourhood[rand], neighbourhood[rand].xLocation, neighbourhood[rand].yLocation)
             else:
                 break
 
@@ -63,16 +65,17 @@ class Magazine:
                         return False
         return True
 
-    def generateNeighbourhood(self, pack):
+    def generateNeighbourhood(self):
         neighbourhood = []
-        for packToPut in self.packagesToPut:
-            xPossibilities = [pack.xLocation - packToPut.width - 1, pack.xLocation, pack.xLocation + pack.width + 1]
-            yPossibilities = [pack.yLocation - packToPut.height - 1, pack.yLocation, pack.yLocation + pack.height + 1]
-            for xToLocate in xPossibilities:
-                for yToLocate in yPossibilities:
-                    if self.canBePut(packToPut, xToLocate, yToLocate):
-                        neighbour = packToPut
-                        neighbour.xLocation = xToLocate
-                        neighbour.yLocation = yToLocate
-                        neighbourhood.append(copy.deepcopy(neighbour))
+        for pack in self.packages:
+            for packToPut in self.packagesToPut:
+                xPossibilities = range(pack.xLocation - packToPut.width - 1, pack.xLocation + pack.width + 2)
+                yPossibilities = range(pack.yLocation - packToPut.height - 1, pack.yLocation + pack.height + 2)
+                for xToLocate in xPossibilities:
+                    for yToLocate in yPossibilities:
+                        if self.canBePut(packToPut, xToLocate, yToLocate):
+                            neighbour = packToPut
+                            neighbour.xLocation = xToLocate
+                            neighbour.yLocation = yToLocate
+                            neighbourhood.append(copy.deepcopy(neighbour))
         return neighbourhood

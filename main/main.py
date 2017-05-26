@@ -8,6 +8,8 @@ def main():
         mgz = magazine.Magazine(mgzSize['width'], mgzSize['height'])
     mgz.allocatePackages()
     mgz.displayPackages()
+    print("")
+    print("Packages left: " + str(len(mgz.packagesToPut)))
 
 if __name__ == "__main__":
     main()

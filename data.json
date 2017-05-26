@@ -1,33 +1,25 @@
 {
   "magazine":
   {
-    "width": 7,
-    "height": 10
+    "width": 9,
+    "height": 6
   },
   "packages": [
     {
       "width": 2,
-      "height": 3
-    },
-    {
-      "width": 1,
-      "height": 4
-    },
-    {
-      "width": 5,
-      "height": 1
-    },
-    {
-      "width": 2,
       "height": 2
     },
     {
-      "width": 1,
+      "width": 3,
+      "height": 2
+    },
+    {
+      "width": 4,
       "height": 2
     },
     {
       "width": 2,
-      "height": 2
+      "height": 5
     }
   ]
 }
